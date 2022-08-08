@@ -1,13 +1,13 @@
 import PopupWithForm from "./PopupWithForm";
 
-function AddNewPlacePopup(props) {
+function AddNewPlacePopup({ isOpen, onClose }) {
   return (
     <PopupWithForm
       name={`newPlacePopup`}
       title={`New place`}
       buttonText={`Create`}
-      isOpen={props.isOpen}
-      onClose={props.onClose}
+      isOpen={isOpen}
+      onClose={onClose}
     >
       <fieldset className="form__fieldset">
         <input

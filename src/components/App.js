@@ -2,105 +2,93 @@ import React, { useState } from "react";
 
 import Header from "./Header";
 import Footer from "./Footer";
-import Main from './Main';
-import EditAvatarPopup from './EditAvatarPopup';
-import EditProfilePopup from './EditProfilePopup';
-import PopupWithConfirmation from './PopupWithConfirmation';
-import PopupWithImage from './PopupWithImage';
-import AddNewPlacePopup from './AddNewPlacePopup';
+import Main from "./Main";
+import EditAvatarPopup from "./EditAvatarPopup";
+import EditProfilePopup from "./EditProfilePopup";
+import PopupWithConfirmation from "./PopupWithConfirmation";
+import PopupWithImage from "./PopupWithImage";
+import AddNewPlacePopup from "./AddNewPlacePopup";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isAddNewPlacePopupOpen, setIsAddNewPlacePopupOpen] = useState(false);
   const [isPopupWithImageOpen, setIsPopupWithImageOpen] = useState(false);
-  const [isPopupWithConfirmationOpen, setIsPopupWithConfirmationOpen] = useState(false)
+  const [isPopupWithConfirmationOpen, setIsPopupWithConfirmationOpen] =
+    useState(false);
   const [selectedCard, setSelectedCard] = useState({});
 
-  function handleEditAvatarClick(){
-    setIsEditAvatarPopupOpen(true)
-    }
-    
-    function handleEditProfileClick(){
-    setIsEditProfilePopupOpen(true)
-    }
-    
-    function handleAddNewPlaceClick(){
-        setIsAddNewPlacePopupOpen(true)
-    }
+  function handleEditAvatarClick() {
+    setIsEditAvatarPopupOpen(true);
+  }
 
-    function handlePopupWithConfirmationClick() {
-      setIsPopupWithConfirmationOpen(true)
-    
-    }
-  
-  
-    function closeAllPopups(){
-        setIsAddNewPlacePopupOpen(false);
-        setIsEditAvatarPopupOpen(false);
-        setIsEditProfilePopupOpen(false);
-        setIsPopupWithImageOpen(false)
-        setIsPopupWithConfirmationOpen(false)
-        setSelectedCard({})
-      }
+  function handleEditProfileClick() {
+    setIsEditProfilePopupOpen(true);
+  }
 
-    function handleCardClick(card){
-      setIsPopupWithImageOpen(true)
-        setSelectedCard(card)
-       
-      }
-      
-      
+  function handleAddNewPlaceClick() {
+    setIsAddNewPlacePopupOpen(true);
+  }
 
-      return (
-      <div className="page">
-<div className="page__container">
-  <Header />
-  <Main 
-  onAddNewPlaceClick={handleAddNewPlaceClick}
-  onEditProfileClick={handleEditProfileClick}
-  onEditAvatarClick={handleEditAvatarClick}
-  onCardClick={handleCardClick}
-  onCardDelete={handlePopupWithConfirmationClick}
-  />
-  <Footer />
-  <EditAvatarPopup
-  isOpen={isEditAvatarPopupOpen}
-  onClose={closeAllPopups}
-  />
+  function handlePopupWithConfirmationClick() {
+    setIsPopupWithConfirmationOpen(true);
+  }
 
-  <EditProfilePopup 
-  isOpen={isEditProfilePopupOpen}
-  onClose={closeAllPopups}
-  />
+  function closeAllPopups() {
+    setIsAddNewPlacePopupOpen(false);
+    setIsEditAvatarPopupOpen(false);
+    setIsEditProfilePopupOpen(false);
+    setIsPopupWithImageOpen(false);
+    setIsPopupWithConfirmationOpen(false);
+    setSelectedCard({});
+  }
 
-  <AddNewPlacePopup 
-  isOpen={isAddNewPlacePopupOpen}
-  onClose={closeAllPopups}
-  />
+  function handleCardClick(card) {
+    setIsPopupWithImageOpen(true);
+    setSelectedCard(card);
+  }
 
-  <PopupWithImage 
-  isOpen={isPopupWithImageOpen}
-  onClose={closeAllPopups}
-  card={selectedCard}
+  return (
+    <div className="page">
+      <div className="page__container">
+        <Header />
+        <Main
+          onAddNewPlaceClick={handleAddNewPlaceClick}
+          onEditProfileClick={handleEditProfileClick}
+          onEditAvatarClick={handleEditAvatarClick}
+          onCardClick={handleCardClick}
+          onCardDelete={handlePopupWithConfirmationClick}
+        />
+        <Footer />
+        <EditAvatarPopup
+          isOpen={isEditAvatarPopupOpen}
+          onClose={closeAllPopups}
+        />
 
-  />
+        <EditProfilePopup
+          isOpen={isEditProfilePopupOpen}
+          onClose={closeAllPopups}
+        />
 
-  <PopupWithConfirmation 
-  isOpen={isPopupWithConfirmationOpen}
-  onClose={closeAllPopups}
-  //onPopupWithConfirmationClick={handlePopupWithConfirmationClick}
-  />
+        <AddNewPlacePopup
+          isOpen={isAddNewPlacePopupOpen}
+          onClose={closeAllPopups}
+        />
 
+        <PopupWithImage
+          isOpen={isPopupWithImageOpen}
+          onClose={closeAllPopups}
+          card={selectedCard}
+        />
 
-
-  
-  
-</div>
-</div>
-     
-
-      );
-    }
+        <PopupWithConfirmation
+          isOpen={isPopupWithConfirmationOpen}
+          onClose={closeAllPopups}
+          //onPopupWithConfirmationClick={handlePopupWithConfirmationClick}
+        />
+      </div>
+    </div>
+  );
+}
 
 export default App;

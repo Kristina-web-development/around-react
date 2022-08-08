@@ -1,13 +1,13 @@
 import PopupWithForm from "./PopupWithForm";
 
-function EditAvatarPopup(props) {
+function EditAvatarPopup( { isOpen, onClose } ) {
   return (
     <PopupWithForm
-      name={`avatarPopup`}
-      title={`Change profile picture`}
-      buttonText={`Save`}
-      isOpen={props.isOpen}
-      onClose={props.onClose}
+      name="avatarPopup"
+      title="Change profile picture"
+      buttonText="Save"
+      isOpen={isOpen}
+      onClose={onClose}
     >
       <fieldset className="form__fieldset">
         <input

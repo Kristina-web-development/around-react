@@ -3,9 +3,9 @@ import api from "../utils/Api";
 import Card from "../components/Card";
 
 function Main(props) {
-  const [userName, setUserName] = useState([]);
-  const [userDescription, setUserDescription] = useState([]);
-  const [userAvatar, setUserAvatar] = useState([]);
+  const [userName, setUserName] = useState("");
+  const [userDescription, setUserDescription] = useState("");
+  const [userAvatar, setUserAvatar] = useState("");
   const [cards, setCards] = useState([]);
 
   useEffect(() => {
@@ -35,10 +35,17 @@ function Main(props) {
   return (
     <main className="main">
       <section className="profile">
-        <div className="profile__container" >
-          <div className="profile__image-container" onClick={props.onEditAvatarClick}>
-            <button className="profile__image-overlay" ></button>
-            <img src={userAvatar} alt="profile image" className="profile__image" />
+        <div className="profile__container">
+          <div
+            className="profile__image-container"
+            onClick={props.onEditAvatarClick}
+          >
+            <button className="profile__image-overlay"></button>
+            <img
+              src={userAvatar}
+              alt="profile image"
+              className="profile__image"
+            />
           </div>
           <div className="profile__info">
             <h1 className="profile__name">{userName}</h1>
@@ -60,7 +67,6 @@ function Main(props) {
 
       <section className="gallery">
         <ul className="gallery__container">
-          {" "}
           {cards.map((data) => (
             <Card
               name={data.name}

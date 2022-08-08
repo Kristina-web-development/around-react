@@ -1,9 +1,9 @@
-import logo from "../images/logo.svg"
+import logo from "../images/logo.svg";
 
-export default function Header(){
-    return(
-        <header className="header">
-            <img src={logo} alt="logo" className="logo" />
-        </header>
-    )
+export default function Header() {
+  return (
+    <header className="header">
+      <img src={logo} alt="logo" className="logo" />
+    </header>
+  );
 }

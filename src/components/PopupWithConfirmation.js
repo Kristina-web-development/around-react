@@ -1,13 +1,13 @@
 import PopupWithForm from "./PopupWithForm";
 
-function PopupWithConfirmation(props) {
+function PopupWithConfirmation({ isOpen, onClose }) {
   return (
     <PopupWithForm
-      name={`deletePicture`}
-      title={`Are you sure?`}
-      buttonText={`Yes`}
-      isOpen={props.isOpen}
-      onClose={props.onClose}
+      name="deletePicture"
+      title="Are you sure?"
+      buttonText="Yes"
+      isOpen={isOpen}
+      onClose={onClose}
     ></PopupWithForm>
   );
 }
