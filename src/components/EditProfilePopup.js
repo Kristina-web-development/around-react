@@ -1,6 +1,6 @@
 import PopupWithForm from "./PopupWithForm";
 
-function EditProfilePopup( { isOpen, onClose } ) {
+function EditProfilePopup({ isOpen, onClose }) {
   return (
     <PopupWithForm
       name="profilePopup"
@@ -14,7 +14,7 @@ function EditProfilePopup( { isOpen, onClose } ) {
           className="form__input"
           type="text"
           id="name"
-          placeholder="Jacques Cousteau"
+          placeholder="name"
           name="name"
           required
           minLength="2"
@@ -27,7 +27,7 @@ function EditProfilePopup( { isOpen, onClose } ) {
           className="form__input"
           type="text"
           id="job"
-          placeholder="Explorer"
+          placeholder="job"
           name="job"
           minLength="2"
           maxLength="200"
