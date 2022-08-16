@@ -1,6 +1,6 @@
 import PopupWithForm from "./PopupWithForm";
 
-function PopupWithConfirmation({ isOpen, onClose }) {
+function PopupWithConfirmation({ isOpen, onClose, onSubmit }) {
   return (
     <PopupWithForm
       name="deletePicture"
@@ -8,6 +8,7 @@ function PopupWithConfirmation({ isOpen, onClose }) {
       buttonText="Yes"
       isOpen={isOpen}
       onClose={onClose}
+      onSubmit={onSubmit}
     ></PopupWithForm>
   );
 }

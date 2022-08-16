@@ -1,36 +1,10 @@
-import React, { useEffect, useState } from "react";
-import api from "../utils/Api";
+import React, { useContext } from "react";
+
 import Card from "../components/Card";
+import CurrentUserContext from "../contexts/CurrentUserContext";
 
 function Main(props) {
-  const [userName, setUserName] = useState("");
-  const [userDescription, setUserDescription] = useState("");
-  const [userAvatar, setUserAvatar] = useState("");
-  const [cards, setCards] = useState([]);
-
-  useEffect(() => {
-    api
-      .getUserInfo()
-      .then((res) => {
-        setUserName(res.name);
-        setUserDescription(res.about);
-        setUserAvatar(res.avatar);
-      })
-      .catch((res) => {
-        console.log(`Error! + ${res.statusText}`);
-      });
-  }, []);
-
-  useEffect(() => {
-    api
-      .getCards()
-      .then((data) => {
-        setCards(data);
-      })
-      .catch((res) => {
-        console.log(`Error! + ${res.statusText}`);
-      });
-  }, []);
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <main className="main">
@@ -42,19 +16,19 @@ function Main(props) {
           >
             <button className="profile__image-overlay"></button>
             <img
-              src={userAvatar}
+              src={currentUser.avatar}
               alt="profile image"
               className="profile__image"
             />
           </div>
           <div className="profile__info">
-            <h1 className="profile__name">{userName}</h1>
+            <h1 className="profile__name">{currentUser.name}</h1>
             <button
               type="button"
               className="profile__open-button"
               onClick={props.onEditProfileClick}
             ></button>
-            <p className="profile__description">{userDescription}</p>
+            <p className="profile__description">{currentUser.about}</p>
           </div>
         </div>
         <button
@@ -67,7 +41,7 @@ function Main(props) {
 
       <section className="gallery">
         <ul className="gallery__container">
-          {cards.map((data) => (
+          {props.cards.map((data) => (
             <Card
               name={data.name}
               link={data.link}
@@ -76,6 +50,7 @@ function Main(props) {
               card={data}
               onCardClick={props.onCardClick}
               onCardDelete={props.onCardDelete}
+              onCardLike={props.onCardLike}
             />
           ))}
         </ul>

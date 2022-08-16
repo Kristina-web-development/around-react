@@ -1,6 +1,6 @@
 import PopupWithForm from "./PopupWithForm";
 
-function EditProfilePopup({ isOpen, onClose }) {
+function EditProfilePopup({ isOpen, onClose, onSubmit }) {
   return (
     <PopupWithForm
       name="profilePopup"
@@ -8,6 +8,7 @@ function EditProfilePopup({ isOpen, onClose }) {
       buttonText="Save"
       isOpen={isOpen}
       onClose={onClose}
+      onSubmit={onSubmit}
     >
       <fieldset className="form__fieldset">
         <input

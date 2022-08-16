@@ -1,6 +1,6 @@
 import PopupWithForm from "./PopupWithForm";
 
-function AddNewPlacePopup({ isOpen, onClose }) {
+function AddNewPlacePopup({ isOpen, onClose, onSubmit }) {
   return (
     <PopupWithForm
       name={`newPlacePopup`}
@@ -8,6 +8,7 @@ function AddNewPlacePopup({ isOpen, onClose }) {
       buttonText={`Create`}
       isOpen={isOpen}
       onClose={onClose}
+      onSubmit={onSubmit}
     >
       <fieldset className="form__fieldset">
         <input

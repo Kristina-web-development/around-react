@@ -1,6 +1,6 @@
 import PopupWithForm from "./PopupWithForm";
 
-function EditAvatarPopup( { isOpen, onClose } ) {
+function EditAvatarPopup({ isOpen, onClose, onSubmit }) {
   return (
     <PopupWithForm
       name="avatarPopup"
@@ -8,6 +8,7 @@ function EditAvatarPopup( { isOpen, onClose } ) {
       buttonText="Save"
       isOpen={isOpen}
       onClose={onClose}
+      onSubmit={onSubmit}
     >
       <fieldset className="form__fieldset">
         <input
