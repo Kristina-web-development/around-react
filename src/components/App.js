@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import api from "../utils/Api";
+import api from "../utils/api";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import Header from "./Header";
 import Footer from "./Footer";
@@ -7,8 +7,8 @@ import Main from "./Main";
 import EditAvatarPopup from "./EditAvatarPopup";
 import EditProfilePopup from "./EditProfilePopup";
 import PopupWithConfirmation from "./PopupWithConfirmation";
-import PopupWithImage from "./PopupWithImage";
-import AddNewPlacePopup from "./AddNewPlacePopup";
+import ImagePopup from "./ImagePopup";
+import AddPlacePopup from "./AddPlacePopup";
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
@@ -172,13 +172,13 @@ function App() {
             onSubmit={editProfileSubmit}
           />
 
-          <AddNewPlacePopup
+          <AddPlacePopup
             isOpen={isAddNewPlacePopupOpen}
             onClose={closeAllPopups}
             onSubmit={handleAddNewPlaceSubmit}
           />
 
-          <PopupWithImage
+          <ImagePopup
             isOpen={isPopupWithImageOpen}
             onClose={closeAllPopups}
             card={selectedCard}

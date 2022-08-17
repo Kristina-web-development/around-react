@@ -1,6 +1,6 @@
 import PopupWithForm from "./PopupWithForm";
 
-function AddNewPlacePopup({ isOpen, onClose, onSubmit }) {
+function AddPlacePopup({ isOpen, onClose, onSubmit }) {
   return (
     <PopupWithForm
       name={`newPlacePopup`}
@@ -40,4 +40,4 @@ function AddNewPlacePopup({ isOpen, onClose, onSubmit }) {
   );
 }
 
-export default AddNewPlacePopup;
+export default AddPlacePopup;

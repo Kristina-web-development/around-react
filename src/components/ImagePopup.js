@@ -1,4 +1,6 @@
-function PopupWithImage(props) {
+import React from "react";
+
+function ImagePopup(props) {
   return (
     <section
       id="bigPicturePopup"
@@ -19,4 +21,4 @@ function PopupWithImage(props) {
   );
 }
 
-export default PopupWithImage;
+export default ImagePopup;
