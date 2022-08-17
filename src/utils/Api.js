@@ -94,4 +94,3 @@ class Api {
   });
   
   export default api;
-  
