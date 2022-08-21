@@ -1,9 +1,22 @@
+import { useEffect, useRef } from "react";
 import PopupWithForm from "./PopupWithForm";
 
 function AddPlacePopup({ isOpen, onClose, onSubmit }) {
+
+  const urlInput = useRef("");
+  const cardTitle = useRef("");
+  
+  useEffect(() => {
+    if(isOpen){
+      urlInput.current.value = "";
+      cardTitle.current.value = ""
+    }
+  },[isOpen])
+
+
   return (
     <PopupWithForm
-      name={`newPlacePopup`}
+      name="newPlacePopup"
       title={`New place`}
       buttonText={`Create`}
       isOpen={isOpen}
@@ -12,6 +25,7 @@ function AddPlacePopup({ isOpen, onClose, onSubmit }) {
     >
       <fieldset className="form__fieldset">
         <input
+          ref={cardTitle}
           className="form__input"
           type="text"
           id="cardTitle"
@@ -25,6 +39,7 @@ function AddPlacePopup({ isOpen, onClose, onSubmit }) {
           Please fill out this field.
         </span>
         <input
+          ref={urlInput}
           className="form__input"
           type="url"
           id="cardLink"
