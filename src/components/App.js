@@ -76,10 +76,13 @@ function App() {
     };
     api.addCard(cardData).then((res) => {
       setCards([res, ...cards]);
+      setIsAddNewPlacePopupOpen(false);
+    })
+    .catch((res) => {
+      console.log(`Error! + ${res.statusText}`);
     });
+   }
 
-    setIsAddNewPlacePopupOpen(false);
-  }
 
   function onCardRemove(card) {
     setIsPopupWithConfirmationOpen(true);
@@ -92,6 +95,9 @@ function App() {
       setIsPopupWithConfirmationOpen(false);
       setCards([...cards.filter((card) => card._id !== cardForRemoval._id)]);
       setCardForRemoval({});
+    })
+    .catch((res) => {
+      console.log(`Error! + ${res.statusText}`);
     });
   }
 
@@ -107,6 +113,9 @@ function App() {
       setCurrentUser({ ...currentUser, avatar: res.avatar });
 
       setIsEditAvatarPopupOpen(false);
+    })
+    .catch((res) => {
+      console.log(`Error! + ${res.statusText}`);
     });
   }
 
@@ -123,6 +132,9 @@ function App() {
       setCurrentUser({ ...currentUser, name: res.name, about: res.about });
 
       setIsEditProfilePopupOpen(false);
+    })
+    .catch((res) => {
+      console.log(`Error! + ${res.statusText}`);
     });
   }
 
