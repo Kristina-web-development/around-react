@@ -18,7 +18,7 @@ function App() {
   const [isPopupWithImageOpen, setIsPopupWithImageOpen] = useState(false);
   const [isPopupWithConfirmationOpen, setIsPopupWithConfirmationOpen] =
     useState(false);
-  const [cardPending, setCardPending] = useState({});
+  const [cardForRemoval, setCardForRemoval] = useState({});
   const [selectedCard, setSelectedCard] = useState({});
   const [cards, setCards] = useState([]);
 
@@ -83,15 +83,15 @@ function App() {
 
   function onCardRemove(card) {
     setIsPopupWithConfirmationOpen(true);
-    setCardPending(card);
+    setCardForRemoval(card);
   }
 
   function confirmSubmit(e) {
     e.preventDefault();
-    api.deleteCard(cardPending._id).then(() => {
+    api.deleteCard(cardForRemoval._id).then(() => {
       setIsPopupWithConfirmationOpen(false);
-      setCards([...cards.filter((card) => card._id !== cardPending._id)]);
-      setCardPending({});
+      setCards([...cards.filter((card) => card._id !== cardForRemoval._id)]);
+      setCardForRemoval({});
     });
   }
 
