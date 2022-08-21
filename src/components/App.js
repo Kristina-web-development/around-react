@@ -35,6 +35,9 @@ function App() {
           }
         }),
       ]);
+    })
+    .catch((res) => {
+      console.log(`Error! + ${res.statusText}`);
     });
   }
 
@@ -143,7 +146,7 @@ function App() {
       });
   }, []);
 
-  useEffect(() => {}, []);
+  
 
   return (
     <div className="page">
