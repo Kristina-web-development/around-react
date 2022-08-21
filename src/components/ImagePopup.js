@@ -14,7 +14,6 @@ function ImagePopup(props) {
             onClick={props.onClose}
           ></button>
           <img src={props.card.link} alt={`Picture of ${props.card.name}`} />
-          <p></p>
         </div>
       </div>
     </section>
