@@ -9,7 +9,7 @@ function PopupWithConfirmation({ isOpen, onClose, onSubmit }) {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={onSubmit}
-    ></PopupWithForm>
+   />
   );
 }
 
