@@ -1,18 +1,32 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 import PopupWithForm from "./PopupWithForm";
 
 function AddPlacePopup({ isOpen, onClose, onSubmit }) {
+  const [urlInput, setUrlInput] = useState("");
+  const [cardTitle, setCardTitle] = useState("");
 
-  const urlInput = useRef("");
-  const cardTitle = useRef("");
-  
+  const handleChangeUrl = (event) => {
+    const newUrl = event.target.value;
+    setUrlInput(newUrl);
+  };
+
+  const handleChangeTitle = (event) => {
+    event.preventDefault();
+    const newTitle = event.target.value;
+    setCardTitle(newTitle);
+  };
+
   useEffect(() => {
-    if(isOpen){
-      urlInput.current.value = "";
-      cardTitle.current.value = ""
+    if (isOpen) {
+      setUrlInput("");
+      setCardTitle("");
     }
-  },[isOpen])
+  }, [isOpen]);
 
+  function formSubmit(e) {
+    e.preventDefault();
+    onSubmit({ cardTitle, urlInput });
+  }
 
   return (
     <PopupWithForm
@@ -21,11 +35,12 @@ function AddPlacePopup({ isOpen, onClose, onSubmit }) {
       buttonText={`Create`}
       isOpen={isOpen}
       onClose={onClose}
-      onSubmit={onSubmit}
+      onSubmit={formSubmit}
     >
       <fieldset className="form__fieldset">
         <input
-          ref={cardTitle}
+          value={cardTitle}
+          onChange={handleChangeTitle}
           className="form__input"
           type="text"
           id="cardTitle"
@@ -39,7 +54,8 @@ function AddPlacePopup({ isOpen, onClose, onSubmit }) {
           Please fill out this field.
         </span>
         <input
-          ref={urlInput}
+          value={urlInput}
+          onChange={handleChangeUrl}
           className="form__input"
           type="url"
           id="cardLink"
