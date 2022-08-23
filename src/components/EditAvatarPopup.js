@@ -6,17 +6,16 @@ function EditAvatarPopup({ isOpen, onClose, onSubmit }) {
 
   // Sorry if i misunderstood the requirement , but it seemed that here i can freely use useRef instead of useState;
 
-  const formSubmit = event => {
+  const formSubmit = (event) => {
     event.preventDefault();
-    
-    onSubmit({avatarLink: avatarLink.current.value})
-  }
+
+    onSubmit({ avatarLink: avatarLink.current.value });
+  };
 
   useEffect(() => {
-    if(isOpen){
+    if (isOpen) {
       avatarLink.current.value = "";
     }
-    
   }, [isOpen]);
 
   return (

@@ -1,37 +1,34 @@
 import PopupWithForm from "./PopupWithForm";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import { useContext, useEffect, useRef, useState } from "react";
-import api from "../utils/api";
 
 function EditProfilePopup({ isOpen, onClose, onSubmit }) {
-
   const currentUser = useContext(CurrentUserContext);
 
   const [name, setName] = useState("");
   const [job, setJob] = useState("");
 
-  const handleChangeName = event => {
+  const handleChangeName = (event) => {
     const newName = event.target.value;
-    setName(newName)
-  }
+    setName(newName);
+  };
 
-  const handleChangeJob = event => {
+  const handleChangeJob = (event) => {
     const newJob = event.target.value;
-    setJob(newJob)
-  }
+    setJob(newJob);
+  };
 
   function formSubmit(e) {
     e.preventDefault();
-    onSubmit({name,job})
+    onSubmit({ name, job });
   }
 
   useEffect(() => {
-      if(isOpen){
-        setName(currentUser.name || "")
-        setJob(currentUser.about || "")
-      }
-  },[isOpen])
-
+    if (isOpen) {
+      setName(currentUser.name || "");
+      setJob(currentUser.about || "");
+    }
+  }, [isOpen]);
 
   return (
     <PopupWithForm
