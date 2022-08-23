@@ -1,20 +1,34 @@
 import PopupWithForm from "./PopupWithForm";
 import CurrentUserContext from "../contexts/CurrentUserContext";
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import api from "../utils/api";
 
 function EditProfilePopup({ isOpen, onClose, onSubmit }) {
 
   const currentUser = useContext(CurrentUserContext);
 
-  const currentName = useRef("")
-  const currentJob = useRef("")
+  const [name, setName] = useState("");
+  const [job, setJob] = useState("");
 
+  const handleChangeName = event => {
+    const newName = event.target.value;
+    setName(newName)
+  }
+
+  const handleChangeJob = event => {
+    const newJob = event.target.value;
+    setJob(newJob)
+  }
+
+  function formSubmit(e) {
+    e.preventDefault();
+    onSubmit({name,job})
+  }
 
   useEffect(() => {
       if(isOpen){
-        currentName.current.value = currentUser.name;
-        currentJob.current.value = currentUser.about;
-
+        setName(currentUser.name || "")
+        setJob(currentUser.about || "")
       }
   },[isOpen])
 
@@ -26,11 +40,12 @@ function EditProfilePopup({ isOpen, onClose, onSubmit }) {
       buttonText="Save"
       isOpen={isOpen}
       onClose={onClose}
-      onSubmit={onSubmit}
+      onSubmit={formSubmit}
     >
       <fieldset className="form__fieldset">
         <input
-          ref={currentName}
+          value={name}
+          onChange={handleChangeName}
           className="form__input"
           type="text"
           id="name"
@@ -44,7 +59,8 @@ function EditProfilePopup({ isOpen, onClose, onSubmit }) {
           Please fill out this field.
         </span>
         <input
-          ref={currentJob}
+          value={job}
+          onChange={handleChangeJob}
           className="form__input"
           type="text"
           id="job"
