@@ -25,20 +25,22 @@ function App() {
   function handleCardLike(card) {
     const isLiked = card.likes.some((user) => user._id === currentUser._id);
 
-    api.changeLikeCardStatus(card._id, isLiked).then((res) => {
-      setCards([
-        ...cards.map((item) => {
-          if (item._id === card._id) {
-            return res;
-          } else {
-            return item;
-          }
-        }),
-      ]);
-    })
-    .catch((res) => {
-      console.log(`Error! + ${res.statusText}`);
-    });
+    api
+      .changeLikeCardStatus(card._id, isLiked)
+      .then((res) => {
+        setCards([
+          ...cards.map((item) => {
+            if (item._id === card._id) {
+              return res;
+            } else {
+              return item;
+            }
+          }),
+        ]);
+      })
+      .catch((res) => {
+        console.log(`Error! + ${res.statusText}`);
+      });
   }
 
   function handleEditAvatarClick() {
@@ -67,22 +69,21 @@ function App() {
     setSelectedCard(card);
   }
 
-  function handleAddNewPlaceSubmit(e) {
-    e.preventDefault();
-    const formData = e.target;
+  function handleAddNewPlaceSubmit({ urlInput, cardTitle }) {
     const cardData = {
-      title: formData.cardTitle.value,
-      image: formData.cardLink.value,
+      title: cardTitle,
+      image: urlInput,
     };
-    api.addCard(cardData).then((res) => {
-      setCards([res, ...cards]);
-      setIsAddNewPlacePopupOpen(false);
-    })
-    .catch((res) => {
-      console.log(`Error! + ${res.statusText}`);
-    });
-   }
-
+    api
+      .addCard(cardData)
+      .then((res) => {
+        setCards([res, ...cards]);
+        setIsAddNewPlacePopupOpen(false);
+      })
+      .catch((res) => {
+        console.log(`Error! + ${res.statusText}`);
+      });
+  }
 
   function onCardRemove(card) {
     setIsPopupWithConfirmationOpen(true);
@@ -91,51 +92,51 @@ function App() {
 
   function confirmSubmit(e) {
     e.preventDefault();
-    api.deleteCard(cardForRemoval._id).then(() => {
-      setIsPopupWithConfirmationOpen(false);
-      setCards([...cards.filter((card) => card._id !== cardForRemoval._id)]);
-      setCardForRemoval({});
-    })
-    .catch((res) => {
-      console.log(`Error! + ${res.statusText}`);
-    });
+    api
+      .deleteCard(cardForRemoval._id)
+      .then(() => {
+        setIsPopupWithConfirmationOpen(false);
+        setCards([...cards.filter((card) => card._id !== cardForRemoval._id)]);
+        setCardForRemoval({});
+      })
+      .catch((res) => {
+        console.log(`Error! + ${res.statusText}`);
+      });
   }
 
-  function editAvatarSubmit(e) {
-    e.preventDefault();
-    const formData = e.target;
-
+  function editAvatarSubmit({ avatarLink }) {
     const data = {
-      avatarLink: formData.avatarLink.value,
+      avatarLink: avatarLink,
     };
 
-    api.addUserAvatar(data).then((res) => {
-      setCurrentUser({ ...currentUser, avatar: res.avatar });
+    api
+      .addUserAvatar(data)
+      .then((res) => {
+        setCurrentUser({ ...currentUser, avatar: res.avatar });
 
-      setIsEditAvatarPopupOpen(false);
-    })
-    .catch((res) => {
-      console.log(`Error! + ${res.statusText}`);
-    });
+        setIsEditAvatarPopupOpen(false);
+      })
+      .catch((res) => {
+        console.log(`Error! + ${res.statusText}`);
+      });
   }
 
-  function editProfileSubmit(e) {
-    e.preventDefault();
-    const formData = e.target;
-
+  function editProfileSubmit({ name, job }) {
     const data = {
-      name: formData.name.value,
-      about: formData.job.value,
+      name: name,
+      about: job,
     };
 
-    api.addUserInfo(data).then((res) => {
-      setCurrentUser({ ...currentUser, name: res.name, about: res.about });
+    api
+      .addUserInfo(data)
+      .then((res) => {
+        setCurrentUser({ ...currentUser, name: res.name, about: res.about });
 
-      setIsEditProfilePopupOpen(false);
-    })
-    .catch((res) => {
-      console.log(`Error! + ${res.statusText}`);
-    });
+        setIsEditProfilePopupOpen(false);
+      })
+      .catch((res) => {
+        console.log(`Error! + ${res.statusText}`);
+      });
   }
 
   useEffect(() => {
@@ -157,8 +158,6 @@ function App() {
         console.log(`Error! + ${res.statusText}`);
       });
   }, []);
-
-  
 
   return (
     <div className="page">
