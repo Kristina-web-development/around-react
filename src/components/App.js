@@ -90,7 +90,7 @@ function App() {
     setCardForRemoval(card);
   }
 
-  function confirmSubmit(e) {
+  function handleConfirmSubmit(e) {
     e.preventDefault();
     api
       .deleteCard(cardForRemoval._id)
@@ -104,7 +104,7 @@ function App() {
       });
   }
 
-  function editAvatarSubmit({ avatarLink }) {
+  function handleEditAvatarSubmit({ avatarLink }) {
     const data = {
       avatarLink: avatarLink,
     };
@@ -121,7 +121,7 @@ function App() {
       });
   }
 
-  function editProfileSubmit({ name, job }) {
+  function handleEditProfileSubmit({ name, job }) {
     const data = {
       name: name,
       about: job,
@@ -177,13 +177,13 @@ function App() {
           <EditAvatarPopup
             isOpen={isEditAvatarPopupOpen}
             onClose={closeAllPopups}
-            onSubmit={editAvatarSubmit}
+            onSubmit={handleEditAvatarSubmit}
           />
 
           <EditProfilePopup
             isOpen={isEditProfilePopupOpen}
             onClose={closeAllPopups}
-            onSubmit={editProfileSubmit}
+            onSubmit={handleEditProfileSubmit}
           />
 
           <AddPlacePopup
@@ -201,7 +201,7 @@ function App() {
           <PopupWithConfirmation
             isOpen={isPopupWithConfirmationOpen}
             onClose={closeAllPopups}
-            onSubmit={confirmSubmit}
+            onSubmit={handleConfirmSubmit}
           />
         </CurrentUserContext.Provider>
       </div>

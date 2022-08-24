@@ -23,7 +23,7 @@ function AddPlacePopup({ isOpen, onClose, onSubmit }) {
     }
   }, [isOpen]);
 
-  function formSubmit(e) {
+  function handleFormSubmit(e) {
     e.preventDefault();
     onSubmit({ cardTitle, urlInput });
   }
@@ -35,7 +35,7 @@ function AddPlacePopup({ isOpen, onClose, onSubmit }) {
       buttonText={`Create`}
       isOpen={isOpen}
       onClose={onClose}
-      onSubmit={formSubmit}
+      onSubmit={handleFormSubmit}
     >
       <fieldset className="form__fieldset">
         <input

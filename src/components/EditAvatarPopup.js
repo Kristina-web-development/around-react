@@ -4,9 +4,7 @@ import PopupWithForm from "./PopupWithForm";
 function EditAvatarPopup({ isOpen, onClose, onSubmit }) {
   const avatarLink = useRef("");
 
-  // Sorry if i misunderstood the requirement , but it seemed that here i can freely use useRef instead of useState;
-
-  const formSubmit = (event) => {
+  const handleFormSubmit = (event) => {
     event.preventDefault();
 
     onSubmit({ avatarLink: avatarLink.current.value });
@@ -25,7 +23,7 @@ function EditAvatarPopup({ isOpen, onClose, onSubmit }) {
       buttonText="Save"
       isOpen={isOpen}
       onClose={onClose}
-      onSubmit={formSubmit}
+      onSubmit={handleFormSubmit}
     >
       <fieldset className="form__fieldset">
         <input

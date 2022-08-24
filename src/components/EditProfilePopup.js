@@ -18,7 +18,7 @@ function EditProfilePopup({ isOpen, onClose, onSubmit }) {
     setJob(newJob);
   };
 
-  function formSubmit(e) {
+  function handleFormSubmit(e) {
     e.preventDefault();
     onSubmit({ name, job });
   }
@@ -28,7 +28,7 @@ function EditProfilePopup({ isOpen, onClose, onSubmit }) {
       setName(currentUser.name || "");
       setJob(currentUser.about || "");
     }
-  }, [isOpen]);
+  }, [isOpen, currentUser]);
 
   return (
     <PopupWithForm
@@ -37,7 +37,7 @@ function EditProfilePopup({ isOpen, onClose, onSubmit }) {
       buttonText="Save"
       isOpen={isOpen}
       onClose={onClose}
-      onSubmit={formSubmit}
+      onSubmit={handleFormSubmit}
     >
       <fieldset className="form__fieldset">
         <input
